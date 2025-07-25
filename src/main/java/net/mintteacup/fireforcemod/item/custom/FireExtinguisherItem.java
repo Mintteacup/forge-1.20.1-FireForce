@@ -102,52 +102,10 @@ public class FireExtinguisherItem extends Item {
                         lookVec.y * 0.05 + (pLevel.random.nextDouble() - 0.5) * 0.02,
                         lookVec.z * 0.05 + (pLevel.random.nextDouble() - 0.5) * 0.02
                 );
-
-                // Occasionally add white smoke particles
-//                if (i % 3 == 0) {
-//                    clientLevel.addParticle(
-//                            ParticleTypes.LARGE_SMOKE,
-//                            spawnPos.x, spawnPos.y, spawnPos.z,
-//                            lookVec.x * 0.03 + (pLevel.random.nextDouble() - 0.5) * 0.01,
-//                            lookVec.y * 0.03 + (pLevel.random.nextDouble() - 0.5) * 0.01,
-//                            lookVec.z * 0.03 + (pLevel.random.nextDouble() - 0.5) * 0.01
-//                    );
-//                }
             }
         }
 
         }
-
-
-//    @Override
-//    public void onUseTick(Level pLevel, LivingEntity pLiving, ItemStack pStack, int pRemainingUseDuration) {
-//        if (!pLevel.isClientSide() && pLiving instanceof Player pPlayer) {
-//            if (pRemainingUseDuration % 5 == 0) { // Throttle to 4x/sec
-//                Vec3 lookVec = pPlayer.getLookAngle();
-//                double maxDistance = 5.0;
-//                //double radius = 1.5; // Spray width at max distance
-//
-//                // Loop from player position to max distance
-//                for (double distance = 1; distance <= maxDistance; distance += 0.5) {
-//                    Vec3 checkPos = pPlayer.getEyePosition().add(lookVec.scale(distance));
-//                    BlockPos blockPos = BlockPos.containing(checkPos);
-//                    BlockState state = pLevel.getBlockState(blockPos);
-//
-//                    // Stop if hitting a solid block
-//                    if (state.isSolidRender(pLevel, blockPos)) {
-//                        break; // Exit the loop early
-//                    }
-//
-//                    if (state.is(Blocks.FIRE)) {
-//                        pLevel.setBlock(blockPos, Blocks.AIR.defaultBlockState(), 3);
-//                        pLevel.playSound(null, blockPos, SoundEvents.FIRE_EXTINGUISH,
-//                                SoundSource.BLOCKS, 0.5F, 1.0F);
-//
-//                    }
-//                }
-//            }
-//        }
-//    }
 
     @Override
     public UseAnim getUseAnimation(ItemStack stack) {
