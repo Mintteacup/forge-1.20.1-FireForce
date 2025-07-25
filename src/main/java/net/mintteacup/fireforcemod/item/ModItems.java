@@ -6,9 +6,12 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.mintteacup.fireforcemod.FireForceMod;
+import net.mintteacup.fireforcemod.item.custom.FireExtinguisherItem;
 
 public class ModItems {
 
+    // Forge's system to safely register items/blocks
+    // Creates a DeferredRegister to hold items
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, FireForceMod.MODID);
 
@@ -16,7 +19,7 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> FIRE_EXTINGUISHER = ITEMS.register("fire_extinguisher",
-            () -> new Item(new Item.Properties()));
+            () -> new FireExtinguisherItem(new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

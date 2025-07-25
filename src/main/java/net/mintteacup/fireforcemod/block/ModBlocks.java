@@ -16,6 +16,8 @@ import java.util.function.Supplier;
 
 public class ModBlocks {
 
+    // Forge's system to safely register items/blocks
+    // Creates a DeferredRegister to hold blocks
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, FireForceMod.MODID);
 
