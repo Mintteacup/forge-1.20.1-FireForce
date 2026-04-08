@@ -6,6 +6,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DropExperienceBlock;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -36,6 +37,10 @@ public class ModBlocks {
             () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.IRON_ORE)
                     .strength(2f).requiresCorrectToolForDrops(), UniformInt.of(3, 6)));
 
+    public static final RegistryObject<Block> FOAM_BLOCK = registerBlock("foam_block",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.SNOW_BLOCK)
+                    .strength(0.5f)
+                    .sound(SoundType.SNOW)));
 
     // Helper method to register a block and its corresponding item
     // <T extends Block> makes this work with any Block subclass
