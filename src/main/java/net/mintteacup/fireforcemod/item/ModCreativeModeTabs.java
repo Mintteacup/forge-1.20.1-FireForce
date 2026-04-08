@@ -20,10 +20,17 @@ public class ModCreativeModeTabs {
                     () -> CreativeModeTab.builder().icon( () -> new ItemStack(ModItems.ADOLLA_BUG.get()))
                             .title(Component.translatable("creativetab.fireforce_tab"))
                             .displayItems((itemDisplayParameters, output) -> {
+                                // Food Items
                                 output.accept(ModItems.ADOLLA_BUG.get());
-                                output.accept(ModItems.FIRE_EXTINGUISHER.get());
 
+                                // Items
+                                output.accept(ModItems.FIRE_EXTINGUISHER.get());
+                                output.accept(ModItems.FOAM_BALL.get());
+                                output.accept(ModItems.CATACLYSMITE_CHUNK.get());
+
+                                // Blocks
                                 output.accept(ModBlocks.HOLY_SOL_TEMPLE_BLOCK.get());
+                                output.accept(ModBlocks.CATACLYSMITE_ORE.get());
                             })
                             .build());
 

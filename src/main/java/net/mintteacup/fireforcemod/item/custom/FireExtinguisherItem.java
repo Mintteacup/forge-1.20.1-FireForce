@@ -19,30 +19,32 @@ import net.minecraft.world.phys.Vec3;
 
 public class FireExtinguisherItem extends Item {
 
+    // ========== CONFIGURATION CONSTANTS ==========
+    private static final int PARTICLES_PER_TICK = 15;
+    private static final double SPREAD_FACTOR = 0.3;
+    private static final double MAX_EXTINGUISH_DISTANCE = 5.0;
+    private static final double PARTICLE_SPEED = 0.05;
+    private static final double START_OFFSET_Y = -0.2;
+    private static final double START_OFFSET_FORWARD = 0.5;
+    // =============================================
+
     public FireExtinguisherItem(Properties pProperties) {
         super(pProperties);
     }
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
-
         ItemStack itemstack = pPlayer.getItemInHand(pUsedHand);
-        pPlayer.startUsingItem(pUsedHand); // Starts the "holding" state
-
-        return InteractionResultHolder.consume(itemstack); // Changed to CONSUME to prevent swinging
+        pPlayer.startUsingItem(pUsedHand);
+        return InteractionResultHolder.consume(itemstack);
     }
 
     @Override
     public void onUseTick(Level pLevel, LivingEntity pLiving, ItemStack pStack, int pRemainingUseDuration) {
-
         if (pLiving instanceof Player pPlayer) {
-
-            // Server-side fire extinguishing logic
             if (!pLevel.isClientSide && pRemainingUseDuration % 5 == 0) {
                 extinguishFires(pLevel, pPlayer);
             }
-
-            // Client-side particle effects
             if (pLevel.isClientSide && pRemainingUseDuration % 2 == 0) {
                 spawnExtinguisherParticles(pLevel, pPlayer);
             }
@@ -50,19 +52,15 @@ public class FireExtinguisherItem extends Item {
     }
 
     private void extinguishFires(Level pLevel, Player pPlayer) {
-
         Vec3 lookVec = pPlayer.getLookAngle();
-        double maxDistance = 5.0;
 
-        // Loop from player position to max distance
-        for (double distance = 1; distance <= maxDistance; distance += 0.5) {
+        for (double distance = 1; distance <= MAX_EXTINGUISH_DISTANCE; distance += 0.5) {
             Vec3 checkPos = pPlayer.getEyePosition().add(lookVec.scale(distance));
             BlockPos blockPos = BlockPos.containing(checkPos);
             BlockState state = pLevel.getBlockState(blockPos);
 
-            // Stop if hitting a solid block
             if (state.isSolidRender(pLevel, blockPos)) {
-                break; // Exit the loop early
+                break;
             }
 
             if (state.is(Blocks.FIRE)) {
@@ -74,17 +72,15 @@ public class FireExtinguisherItem extends Item {
     }
 
     private void spawnExtinguisherParticles(Level pLevel, Player pPlayer) {
-
         if (pLevel instanceof ClientLevel clientLevel) {
             Vec3 lookVec = pPlayer.getLookAngle();
             Vec3 startPos = pPlayer.getEyePosition()
-                    .subtract(0, 0.2, 0) // Adjust height slightly
-                    .add(lookVec.scale(0.5)); // Start slightly in front of player
+                    .subtract(0, START_OFFSET_Y, 0)
+                    .add(lookVec.scale(START_OFFSET_FORWARD));
 
-            // Create a cone-shaped spray of particles
-            for (int i = 0; i < 15; i++) {
-                double distance = 0.5 + pLevel.random.nextDouble() * 4.5;
-                double spread = distance * 0.3; // Wider spread at greater distances
+            for (int i = 0; i < PARTICLES_PER_TICK; i++) {
+                double distance = 0.5 + pLevel.random.nextDouble() * MAX_EXTINGUISH_DISTANCE;
+                double spread = distance * SPREAD_FACTOR;
 
                 Vec3 spawnPos = startPos.add(
                         lookVec.x * distance,
@@ -98,23 +94,21 @@ public class FireExtinguisherItem extends Item {
                 clientLevel.addParticle(
                         ParticleTypes.CLOUD,
                         spawnPos.x, spawnPos.y, spawnPos.z,
-                        lookVec.x * 0.05 + (pLevel.random.nextDouble() - 0.5) * 0.02,
-                        lookVec.y * 0.05 + (pLevel.random.nextDouble() - 0.5) * 0.02,
-                        lookVec.z * 0.05 + (pLevel.random.nextDouble() - 0.5) * 0.02
+                        lookVec.x * PARTICLE_SPEED + (pLevel.random.nextDouble() - 0.5) * 0.02,
+                        lookVec.y * PARTICLE_SPEED + (pLevel.random.nextDouble() - 0.5) * 0.02,
+                        lookVec.z * PARTICLE_SPEED + (pLevel.random.nextDouble() - 0.5) * 0.02
                 );
             }
         }
-
-        }
+    }
 
     @Override
     public UseAnim getUseAnimation(ItemStack stack) {
-        return UseAnim.BOW; // Plays the bow-pulling animation while holding
+        return UseAnim.BOW;
     }
 
     @Override
     public int getUseDuration(ItemStack stack) {
-        return 72000; // Arbitrarily large duration (holds indefinitely)
+        return 72000;
     }
-
 }
