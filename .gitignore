@@ -28,11 +28,11 @@ forge*changelog.txt
 *.log
 *.log.gz
 crash-reports/
+run/logs/
 
 # Local configs
 *.local
 *.lock
 
-# All logs
-run/logs/
-*.log
+# Cache
+.cache/
