@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "C": {
+      "item": "minecraft:copper_ingot"
+    },
+    "F": {
+      "item": "fireforcemod:foam_ball"
+    }
+  },
+  "pattern": [
+    "CFC",
+    "CFC",
+    "CCC"
+  ],
+  "result": {
+    "item": "fireforcemod:fire_extinguisher"
+  },
+  "show_notification": true
+}

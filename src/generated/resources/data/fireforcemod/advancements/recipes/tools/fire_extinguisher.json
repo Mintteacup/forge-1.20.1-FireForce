@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_foam_ball": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "fireforcemod:foam_ball"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "fireforcemod:fire_extinguisher"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_foam_ball",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "fireforcemod:fire_extinguisher"
+    ]
+  },
+  "sends_telemetry_event": false
+}
