@@ -20,6 +20,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         blockWithItem(ModBlocks.CATACLYSMITE_ORE);
 
+        blockWithItem(ModBlocks.FOAM_BLOCK);
+
     }
 
     private void blockWithItem(RegistryObject<Block> blockRegistryObject) {
