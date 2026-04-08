@@ -1,8 +1,12 @@
 {
   "item.fireforcemod.adolla_bug": "Adolla Bug",
+
   "item.fireforcemod.fire_extinguisher": "Fire Extinguisher",
+  "item.fireforcemod.foam_ball": "Foam Ball",
+  "item.fireforcemod.cataclysmite_chunk": "Cataclysmite Chunk",
 
   "block.fireforcemod.holy_sol_temple_block": "Holy Sol Temple Block",
+  "block.fireforcemod.cataclysmite_ore": "Cataclysmite Ore",
 
   "creativetab.fireforce_tab": "Fire Force Tab"
 }
