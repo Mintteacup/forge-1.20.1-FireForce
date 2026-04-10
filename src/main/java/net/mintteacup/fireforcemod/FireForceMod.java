@@ -26,15 +26,13 @@ public class FireForceMod
     // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
 
-
-    public FireForceMod(FMLJavaModLoadingContext context)
+    public FireForceMod()
     {
-        IEventBus modEventBus = context.getModEventBus();
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModCreativeModeTabs.register(modEventBus);
 
         ModItems.register(modEventBus);
-
         ModBlocks.register(modEventBus);
 
         // Register the commonSetup method for modloading
