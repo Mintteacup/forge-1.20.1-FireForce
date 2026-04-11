@@ -1,0 +1,50 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.unknown",
+				"texture_width": 16,
+				"texture_height": 16,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 1.5,
+				"visible_bounds_offset": [0, 0.25, 0]
+			},
+			"bones": [
+				{
+					"name": "body",
+					"pivot": [0, 0, 0]
+				},
+				{
+					"name": "torso",
+					"parent": "body",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{"origin": [-1, 0, -1], "size": [2, 2, 3], "uv": [1, 0]}
+					]
+				},
+				{
+					"name": "wings",
+					"parent": "body",
+					"pivot": [1, 2, 1]
+				},
+				{
+					"name": "left",
+					"parent": "wings",
+					"pivot": [0.1897, 1.97502, 0.53806],
+					"cubes": [
+						{"origin": [-0.00164, 2, 0], "size": [2, 0, 1], "pivot": [0.99836, 1.97502, 1], "rotation": [0, -22.5, 0], "uv": [-1, 0]}
+					]
+				},
+				{
+					"name": "right",
+					"parent": "wings",
+					"pivot": [-0.17259, 1.71397, 0.53806],
+					"cubes": [
+						{"origin": [-1.98125, 2, 0], "size": [2, 0, 1], "pivot": [-0.98125, 1.71397, 1], "rotation": [0, 22.5, 0], "uv": [-1, 0], "mirror": true}
+					]
+				}
+			]
+		}
+	]
+}

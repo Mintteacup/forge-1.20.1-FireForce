@@ -59,11 +59,21 @@ repositories {
         name = 'SmartBrainLib'
         url = 'https://dl.cloudsmith.io/public/tslat/sbl/maven/'
     }
+    maven {
+        name = 'GeckoLib'
+        url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+        content {
+            includeGroupByRegex("software\\.bernie.*")
+            includeGroup("com.eliotlash.mclib")
+        }
+    }
 }
 
 dependencies {
     modImplementation "net.tslat.smartbrainlib:SmartBrainLib-forge-${project.minecraft_version}:${project.sbl_version}"
     // Example: implementation fg.deobf("net.tslat.smartbrainlib:SmartBrainLib-forge-1.21.1:1.16.5")
+
+    modImplementation "software.bernie.geckolib:geckolib-forge-${minecraft_version}:${geckolib_version}"
 }
 
 tasks.named('processResources', ProcessResources).configure {
