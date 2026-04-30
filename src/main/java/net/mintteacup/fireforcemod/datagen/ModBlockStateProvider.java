@@ -22,6 +22,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         blockWithItem(ModBlocks.FOAM_BLOCK);
 
+        blockWithItem(ModBlocks.ADOLLA_NEST);
+
     }
 
     private void blockWithItem(RegistryObject<Block> blockRegistryObject) {

@@ -1,12 +1,9 @@
 package net.mintteacup.fireforcemod.entity.custom;
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.FlyingMob;
 import net.minecraft.world.entity.ai.Brain;
-import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
 import net.minecraft.world.level.Level;
 import net.mintteacup.fireforcemod.entity.ai.behaviour.MoveToFlyingTarget;
@@ -15,10 +12,8 @@ import net.tslat.smartbrainlib.api.SmartBrainOwner;
 import net.tslat.smartbrainlib.api.core.BrainActivityGroup;
 import net.tslat.smartbrainlib.api.core.SmartBrainProvider;
 import net.tslat.smartbrainlib.api.core.behaviour.FirstApplicableBehaviour;
-import net.tslat.smartbrainlib.api.core.behaviour.OneRandomBehaviour;
 import net.tslat.smartbrainlib.api.core.behaviour.custom.attack.AnimatableMeleeAttack;
 import net.tslat.smartbrainlib.api.core.behaviour.custom.look.LookAtTarget;
-import net.tslat.smartbrainlib.api.core.behaviour.custom.misc.Idle;
 import net.tslat.smartbrainlib.api.core.behaviour.custom.target.InvalidateAttackTarget;
 import net.tslat.smartbrainlib.api.core.behaviour.custom.target.SetPlayerLookTarget;
 import net.tslat.smartbrainlib.api.core.behaviour.custom.target.SetRandomLookTarget;
@@ -35,24 +30,11 @@ import java.util.List;
 public class AdollaBugEntity extends FlyingMob implements GeoEntity, SmartBrainOwner<AdollaBugEntity> {
 
     private final AnimatableInstanceCache cache;
-    private final BlockPos spawnPos;
 
     public AdollaBugEntity(EntityType<? extends FlyingMob> entityType, Level level) {
         super(entityType, level);
         this.cache = GeckoLibUtil.createInstanceCache(this);
         this.navigation = new FlyingPathNavigation(this, level);
-        this.spawnPos = this.blockPosition();
-    }
-
-    public BlockPos getSpawnPos() {
-        return spawnPos;
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        return FlyingMob.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 20.0D)
-                .add(Attributes.FLYING_SPEED, 0.25D)
-                .add(Attributes.ATTACK_DAMAGE, 3.0D);
     }
 
     @Override
@@ -97,9 +79,9 @@ public class AdollaBugEntity extends FlyingMob implements GeoEntity, SmartBrainO
                 new FirstApplicableBehaviour<AdollaBugEntity>(
                         new TargetOrRetaliate<>(),
                         new SetPlayerLookTarget<>(),
-                        new SetRandomLookTarget<>()
-                ),
-                new SetRandomFlyingTarget().setRadius(15, 15).speedModifier(0.8f)
+                        new SetRandomLookTarget<>(),
+                        new SetRandomFlyingTarget()
+                )
         );
     }
 

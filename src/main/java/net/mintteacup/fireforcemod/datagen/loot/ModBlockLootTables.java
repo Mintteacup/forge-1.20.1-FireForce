@@ -32,6 +32,9 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.add(ModBlocks.FOAM_BLOCK.get(),
                 block -> createVariableDrops(ModBlocks.FOAM_BLOCK.get(), ModItems.FOAM_BALL.get()));
 
+        this.add(ModBlocks.ADOLLA_NEST.get(),
+                block -> createSilkTouchOnlyTable(block));
+
     }
 
     protected LootTable.Builder createVariableDrops(Block pBlock, Item item) {
@@ -39,6 +42,10 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 LootItem.lootTableItem(item)
                         .apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 5.0F)))
                         .apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE))));
+    }
+
+    protected LootTable.Builder createSilkTouchOnlyTable(Block block) {
+        return createSilkTouchDispatchTable(block, LootItem.lootTableItem(block));
     }
 
     @Override

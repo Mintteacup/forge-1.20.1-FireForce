@@ -21,6 +21,7 @@ import net.mintteacup.fireforcemod.item.ModItems;
 import org.slf4j.Logger;
 import net.mintteacup.fireforcemod.entity.custom.AdollaBugEntity;
 import net.mintteacup.fireforcemod.entity.client.AdollaBugRenderer;
+import net.mintteacup.fireforcemod.poi.ModPoiTypes;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(FireForceMod.MODID)
@@ -53,6 +54,8 @@ public class FireForceMod
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
+
+        ModPoiTypes.POI_TYPES.register(modEventBus);
 
         // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
         //context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);

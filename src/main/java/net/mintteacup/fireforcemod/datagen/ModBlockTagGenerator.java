@@ -28,5 +28,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL)
                 .add(ModBlocks.FOAM_BLOCK.get());
+
     }
+
 }

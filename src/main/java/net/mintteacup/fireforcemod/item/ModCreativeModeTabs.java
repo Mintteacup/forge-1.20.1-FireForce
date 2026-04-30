@@ -32,6 +32,7 @@ public class ModCreativeModeTabs {
                                 output.accept(ModBlocks.HOLY_SOL_TEMPLE_BLOCK.get());
                                 output.accept(ModBlocks.CATACLYSMITE_ORE.get());
                                 output.accept(ModBlocks.FOAM_BLOCK.get());
+                                output.accept(ModBlocks.ADOLLA_NEST.get());
                             })
                             .build());
 

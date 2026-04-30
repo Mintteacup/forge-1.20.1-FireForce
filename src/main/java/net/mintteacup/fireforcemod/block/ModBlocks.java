@@ -42,6 +42,10 @@ public class ModBlocks {
                     .strength(0.5f)
                     .sound(SoundType.SNOW)));
 
+    public static final RegistryObject<Block> ADOLLA_NEST = registerBlock("adolla_nest",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.BEE_NEST)
+                    .sound(SoundType.HONEY_BLOCK)));
+
     // Helper method to register a block and its corresponding item
     // <T extends Block> makes this work with any Block subclass
     // Takes a registry name and a Supplier that creates the block
