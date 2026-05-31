@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
@@ -14,13 +15,16 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.mintteacup.fireforcemod.abilitysystem.ModAbilities;
 import net.mintteacup.fireforcemod.block.ModBlocks;
+import net.mintteacup.fireforcemod.client.KeyBindings;
 import net.mintteacup.fireforcemod.entity.ModEntities;
 import net.mintteacup.fireforcemod.item.ModCreativeModeTabs;
 import net.mintteacup.fireforcemod.item.ModItems;
+import net.mintteacup.fireforcemod.network.ModNetwork;
 import org.slf4j.Logger;
-import net.mintteacup.fireforcemod.entity.custom.AdollaBugEntity;
-import net.mintteacup.fireforcemod.entity.client.AdollaBugRenderer;
+//import net.mintteacup.fireforcemod.entity.custom.AdollaBugEntity;
+//import net.mintteacup.fireforcemod.entity.client.AdollaBugRenderer;
 import net.mintteacup.fireforcemod.poi.ModPoiTypes;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -38,11 +42,15 @@ public class FireForceMod
 
         ModCreativeModeTabs.register(modEventBus);
 
-        ModEntities.ENTITIES.register(modEventBus);
+//        ModEntities.ENTITIES.register(modEventBus);
 
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+
+        ModAbilities.register();
+
+        ModNetwork.register();
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
@@ -50,20 +58,21 @@ public class FireForceMod
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
 
-        modEventBus.addListener(this::registerEntityAttributes);
+//        modEventBus.addListener(this::registerEntityAttributes);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 
         ModPoiTypes.POI_TYPES.register(modEventBus);
 
+
         // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
         //context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 
-    private void registerEntityAttributes(EntityAttributeCreationEvent event) {
-        event.put(ModEntities.ADOLLA_BUG.get(), AdollaBugEntity.createAttributes().build());
-    }
+//    private void registerEntityAttributes(EntityAttributeCreationEvent event) {
+//        event.put(ModEntities.ADOLLA_BUG.get(), AdollaBugEntity.createAttributes().build());
+//    }
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
@@ -75,10 +84,10 @@ public class FireForceMod
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
 
-        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
-            event.accept(ModItems.ADOLLA_BUG);
-            event.accept(ModItems.FIRE_EXTINGUISHER);
-        }
+//        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+//            event.accept(ModItems.ADOLLA_BUG);
+//            event.accept(ModItems.FIRE_EXTINGUISHER);
+//        }
 
     }
 
@@ -102,9 +111,14 @@ public class FireForceMod
         }
 
         @SubscribeEvent
-        public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
-            event.registerEntityRenderer(ModEntities.ADOLLA_BUG.get(), AdollaBugRenderer::new);
+        public static void registerBindings(RegisterKeyMappingsEvent event) {
+            event.register(KeyBindings.USE_ABILITY_KEY.get());
         }
+
+//        @SubscribeEvent
+//        public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
+//            event.registerEntityRenderer(ModEntities.ADOLLA_BUG.get(), AdollaBugRenderer::new);
+//        }
     }
 
 

@@ -11,5 +11,8 @@
   "block.fireforcemod.adolla_nest": "Adolla Nest",
 
 
-  "creativetab.fireforce_tab": "Fire Force Tab"
+  "creativetab.fireforce_tab": "Fire Force Tab",
+
+  "key.fireforcemod.use_ability": "Use Ability",
+  "key.categories.fireforcemod": "FireForce"
 }
