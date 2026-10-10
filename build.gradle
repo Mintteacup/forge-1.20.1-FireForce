@@ -56,6 +56,13 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
     maven {
+        name = 'SmartBrainLib'
+        url = 'https://dl.cloudsmith.io/public/tslat/sbl/maven/'
+        content {
+            includeGroup('net.tslat.smartbrainlib')
+        }
+    }
+    maven {
         name = 'GeckoLib'
         url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
         content {
@@ -66,6 +73,7 @@ repositories {
 }
 
 dependencies {
+    modImplementation "net.tslat.smartbrainlib:SmartBrainLib-forge-${project.minecraft_version}:${project.sbl_version}"
     modImplementation "software.bernie.geckolib:geckolib-forge-${minecraft_version}:${geckolib_version}"
 }
 
