@@ -23,8 +23,8 @@ import net.mintteacup.fireforcemod.item.ModCreativeModeTabs;
 import net.mintteacup.fireforcemod.item.ModItems;
 import net.mintteacup.fireforcemod.network.ModNetwork;
 import org.slf4j.Logger;
-//import net.mintteacup.fireforcemod.entity.custom.AdollaBugEntity;
-//import net.mintteacup.fireforcemod.entity.client.AdollaBugRenderer;
+import net.mintteacup.fireforcemod.entity.custom.AdollaBugEntity;
+import net.mintteacup.fireforcemod.entity.client.AdollaBugRenderer;
 import net.mintteacup.fireforcemod.poi.ModPoiTypes;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -42,7 +42,7 @@ public class FireForceMod
 
         ModCreativeModeTabs.register(modEventBus);
 
-//        ModEntities.ENTITIES.register(modEventBus);
+        ModEntities.ENTITIES.register(modEventBus);
 
 
         ModItems.register(modEventBus);
@@ -58,7 +58,7 @@ public class FireForceMod
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
 
-//        modEventBus.addListener(this::registerEntityAttributes);
+        modEventBus.addListener(this::registerEntityAttributes);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
@@ -70,9 +70,9 @@ public class FireForceMod
         //context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 
-//    private void registerEntityAttributes(EntityAttributeCreationEvent event) {
-//        event.put(ModEntities.ADOLLA_BUG.get(), AdollaBugEntity.createAttributes().build());
-//    }
+    private void registerEntityAttributes(EntityAttributeCreationEvent event) {
+        event.put(ModEntities.ADOLLA_BUG.get(), AdollaBugEntity.createAttributes().build());
+   }
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
@@ -84,10 +84,10 @@ public class FireForceMod
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
 
-//        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
-//            event.accept(ModItems.ADOLLA_BUG);
-//            event.accept(ModItems.FIRE_EXTINGUISHER);
-//        }
+       if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+            event.accept(ModItems.ADOLLA_BUG);
+            event.accept(ModItems.FIRE_EXTINGUISHER);
+        }
 
     }
 
@@ -115,10 +115,10 @@ public class FireForceMod
             event.register(KeyBindings.USE_ABILITY_KEY.get());
         }
 
-//        @SubscribeEvent
-//        public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
-//            event.registerEntityRenderer(ModEntities.ADOLLA_BUG.get(), AdollaBugRenderer::new);
-//        }
+        @SubscribeEvent
+        public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
+            event.registerEntityRenderer(ModEntities.ADOLLA_BUG.get(), AdollaBugRenderer::new);
+        }
     }
 
 
