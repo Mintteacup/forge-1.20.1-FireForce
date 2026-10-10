@@ -1,5 +1,6 @@
 package net.mintteacup.fireforcemod.abilitysystem.core;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +17,10 @@ public class AbilityRegistry {
 
     public static IAbility get(String id) {
         return abilities.get(id);
+    }
+
+    public static Collection<IAbility> getAll() {
+        return abilities.values();
     }
 
 }
